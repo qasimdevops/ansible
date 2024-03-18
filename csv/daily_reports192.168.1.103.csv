@@ -1,0 +1,9 @@
+Hostname,Ip Address,Df -h (Mount storage)
+node-1,192.168.1.103,"Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda5       2.0G   89M  2.0G   5% /
+/dev/sda2       6.0G  3.9G  2.2G  65% /usr
+/dev/sda3       4.0G  2.2G  1.9G  53% /var
+/dev/sda7      1014M   33M  982M   4% /tmp
+/dev/sda6      1014M   39M  976M   4% /home
+/dev/sda1       497M  220M  278M  45% /boot
+"

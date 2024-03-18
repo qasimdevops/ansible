@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  vars:
+    my_int: 12
+    my_str: "qasim"
+    my_float: 12.3
+    my_bool: true
+    my_list: [1,2,3,4,5]
+    my_dict: {"name":"qasim","age":27} 
+    my_none: none
+  tasks:
+  - name: print the int
+    debug:
+      var: my_int
+  - name: print the str
+    debug:
+      var: my_str
+  - name: print the float
+    debug:
+      var: my_float
+  - name: print the bool
+    debug:
+      var: my_bool
+  - name: print the list
+    debug:
+      var: my_list
+        
+  - name: print the dict
+    debug:
+      var: my_dict
+  - name: print the none
+    debug:
+      var: my_none

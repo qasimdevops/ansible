@@ -1,0 +1,12 @@
+---
+- name: install the pkg with extra flag
+  hosts: rhel
+  become: yes
+  vars:
+    package_name: "{{pkg_name}}"
+  tasks:
+  - name: display the pkg
+    yum:
+      name: "{{package_name}}"
+      state: present  
+      

@@ -1,0 +1,15 @@
+---
+- hosts: rhel
+  vars: 
+    myfiles:
+      - name: /tmp/test.txt
+        content: this is loop example via yml file
+      - name: /tmp/test2.txt
+        content: i'm learning ansible
+  tasks:
+  - name: file creation process
+    copy:
+      dest: "{{item.name}}"
+      content: "{{item.content}}"
+    loop: "{{myfiles}}"    
+

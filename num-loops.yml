@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  vars:
+    num: "{{range(1,10)|list}}"
+  tasks:      
+  - name: display the data 
+    debug:
+      var: item
+    loop: "{{num}}"  

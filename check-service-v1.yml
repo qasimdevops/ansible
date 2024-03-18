@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: restart the apache service in rhel
+    service:
+      name: httpd
+      state: restarted
+    when: httpd_status.state != "stoped"    
+    when: ansible_os_family == "RedHat"    
+    register: httpd_start
+  - debug:
+      var: httpd_start.status.SubState
+    when: ansible_os_family == "RedHat"
+  - name: restart the ssh service in ubuntu
+    service:
+      name: ssh
+      state: restarted
+    when: ssh_status.state != "started"    
+    when: ansible_os_family == "Debian"
+    register: ssh_start
+  - debug: 
+      var: ssh_start.status.SubState
+    when: ansible_os_family == "Debian"    

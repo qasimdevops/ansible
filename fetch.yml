@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+  - name: i'm fetch from nodes to master
+    fetch:
+      src: /home/ansible/copy.txt
+      dest: /home/ansible/
+      flat: yes    

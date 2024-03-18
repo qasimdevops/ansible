@@ -1,0 +1,17 @@
+---
+- name: install the require pkg
+  hosts: rhel
+  become: yes
+  gather_facts: no
+  vars_prompt: 
+  - name: "pkg"
+    prompt: enter the pkg name
+    private: no
+  - name: "action_name"    
+    prompt: put your requirements about the pkg e.g present,absent,latest
+    private: no   
+  tasks:
+  - name: running your "{{pkg}}" with you select the action  "{{action_name}}" 
+    yum:
+      name: "{{pkg}}"
+      state: "{{action_name}}"   

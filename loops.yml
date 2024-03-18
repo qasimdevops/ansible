@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  vars:
+    data:
+      - qasim
+      - ali
+      - alnafi
+      - ansible
+      - loop
+  tasks:      
+  - name: display the data 
+    debug:
+      var: data
+    loop: "{{data}}"  

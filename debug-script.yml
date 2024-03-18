@@ -1,0 +1,6 @@
+---
+- name: this is first msg from debug
+  hosts: all
+  tasks:
+  - debug: 
+      msg: "hello how are you"  

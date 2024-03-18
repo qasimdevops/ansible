@@ -1,0 +1,16 @@
+---
+- hosts: rhel
+  become: true
+  vars:
+    packages:
+     - wget
+     - vim
+  tasks: 
+  - name: install the two pkg
+    yum:
+      update_cache: true
+  - name: package list
+    yum:
+      name: "{{packages}}"
+      state: present    
+          

@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+  - name: i'm copying from master to node
+    copy: 
+      src=/home/ansible/ansible/copy.txt dest=/home/ansible    

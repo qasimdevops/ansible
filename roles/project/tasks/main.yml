@@ -1,0 +1,9 @@
+---
+# tasks file for project
+- name: this is role example
+  yum:
+    name: wget
+    state: present   
+- name: display the variable 
+  debug:
+    var: a 

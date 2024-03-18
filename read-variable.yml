@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_prompt: 
+    - name: "qasim"
+      prompt: "enter the value"
+  tasks:      
+  - name: print the prompt value
+    debug:
+      var: qasim    

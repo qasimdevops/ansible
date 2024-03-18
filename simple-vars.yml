@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars:
+    a: qasim
+    b: 5
+    c: 12.5
+    d: false
+  tasks:   
+  - debug:
+      msg:
+       - "my a vars is {{a}} my a vars type is {{a|type_debug}}"
+       - "my b vars is {{b}} my a vars type is {{b|type_debug}}"
+       - "my c vars is {{c}} my a vars type is {{c|type_debug}}"
+       - "my d vars is {{d}} my a vars type is {{d|type_debug}}"
+
+

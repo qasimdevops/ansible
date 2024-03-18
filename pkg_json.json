@@ -1,0 +1,8 @@
+{
+	"package_info":
+	{
+		"package_name":  "wget",
+		"package_state": "present"
+	}
+}	
+	

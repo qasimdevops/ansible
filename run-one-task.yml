@@ -1,0 +1,18 @@
+---
+- hosts: rhel
+  become: yes
+  tasks:
+  - name: install the pkg
+    yum:
+      name: wget
+      state: present
+    tags:
+      - wget_install
+      - never    
+  - name: start the service
+    service:
+      name: httpd
+      state: started
+    tags:
+      - httpd_started
+      - never    

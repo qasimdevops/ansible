@@ -1,0 +1,19 @@
+---
+- name: create user via loop
+  hosts: rhel
+  become: yes
+  vars:
+    my_bulk_user:
+      - name: qasim
+        password: 1234
+      - name: ali
+        password: 1234
+      - name: alnafi
+        password: 1234
+  tasks:
+  - name: create the user
+    user:
+      name: "{{item.name}}"
+      password: "{{item.password | string | password_hash('sha512') }}"
+      update_password: on_create
+    loop: "{{my_bulk_user}}"    

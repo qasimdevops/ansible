@@ -1,0 +1,16 @@
+---
+- name: install the pkg via loop
+  hosts: rhel
+  become: yes
+  vars:
+    packages:
+    - name: wget
+      state: present
+    - name: vim
+      state: present
+  tasks:
+  - name: install the pkg
+    yum: 
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+    loop: "{{packages}}"    

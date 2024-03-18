@@ -1,0 +1,17 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:  
+  - name: nginx service output
+    copy:
+      src: /home/ansible/ansible/ssh-check-v2.sh
+      dest: /home/ansible
+      mode: 0755
+      owner: ansible
+      group: ansible
+  - name: running the script
+    command: /home/ansible/ssh-check-v2.sh
+    register: bash_output
+  - debug:
+      var: bash_output    
+    

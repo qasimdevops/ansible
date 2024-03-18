@@ -1,0 +1,16 @@
+---
+- name: read the json file
+  hosts: rhel
+  become: yes
+  gather_facts: no
+  tasks: 
+  - name: read the pkg details fromjson file
+    include_vars:
+      file: "{{pkg_info_file}}"
+    vars: 
+      pkg_info_file: "pkg_json.json"
+  - name: run the action
+    yum:
+      name: "{{package_info.package_name}}"
+      state: "{{package_info.package_state}}"  
+

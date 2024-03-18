@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: check the apache version
+    shell: apache2 -v || httpd -v
+    register: apache_version  
+    when: ansible_os_family in ["Debian","RedHat"]  
+
+  - name: printing the apavhe and httpd version  
+    debug:
+      var: apache_version.stdout_lines  
+

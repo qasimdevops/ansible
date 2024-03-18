@@ -1,0 +1,39 @@
+---
+- hosts: all
+  tasks:
+  - name: delete the old csv files
+    file:
+      path: /home/ansible/OS_OUTPUT.csv
+      state: absent  
+  - name: Adding the header to CSV file 
+    lineinfile:
+      path: /home/ansible/OS_OUTPUT.csv
+      line: "HOSTNAME,IP ADDRESS,DF -h (mount details)"
+      create: yes 
+  - name: Collecting hostname 
+    shell: "hostname | tr -d '\n'"
+    register: hostname_details
+  - debug:
+      var: hostname_details.stdout
+  - name: Collecting IP address
+    shell: "hostname -I | awk '{print $1}' | tr -d '\n'"
+    register: ip_details
+  - debug:
+      var: ip_details.stdout
+  - name: Collecting the disk storage output
+    shell: "df -h | grep -v 'tmpfs'"
+    register: df_details
+  - debug:
+      var: df_details.stdout_lines
+  - name: Save data to CSV file 
+    lineinfile:
+      dest: /home/ansible/OS_OUTPUT.csv
+      line: "{{ hostname_details.stdout }},{{ip_details.stdout }},\"\"\"{{ df_details.stdout }}\"\"\""
+      delimiter: ','  
+  - name: fetching the csv data from nodes to master
+    fetch:
+      src: /home/ansible/OS_OUTPUT.csv
+      dest: /home/ansible/OS_OUTPUT{{ansible_hostname}}_{{ansible_date_time.minute}}.csv
+      flat: yes 
+       
+

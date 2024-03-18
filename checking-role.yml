@@ -1,0 +1,7 @@
+---
+- name: this is role example file
+  hosts: rhel
+  become: yes
+  gather_facts: no
+  roles: 
+  - project   

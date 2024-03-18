@@ -1,0 +1,4 @@
+Hostname,Ip Address,Df -h (Mount storage)
+node-2,192.168.1.104,"Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        25G   22G  1.3G  95% /
+"

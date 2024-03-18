@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    a: "qasim"
+  tasks:    
+  - set_fact:
+      b: "alnafi"    
+  - name: print the vars
+    debug: 
+      var: a
+  - name: print the set_facts
+    debug:
+      var: b    

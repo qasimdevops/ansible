@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: start the apache service in rhel
+    service:
+      name: httpd
+      state: started
+    when: ansible_os_family == "RedHat"    
+    register: httpd_start
+  - debug:
+      var: httpd_start.status.SubState
+    when: ansible_os_family == "RedHat"
+  - name: start the ssh service in ubuntu
+    service:
+      name: ssh
+      state: started
+    when: ansible_os_family == "Debian"
+    register: ssh_start
+  - debug: 
+      var: ssh_start.status.SubState
+    when: ansible_os_family == "Debian"    

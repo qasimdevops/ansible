@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  tasks:
+  - name: collectin hostname
+    shell: "hostname | tr -d '\\n'"
+    register: host_name
+  - debug:
+      var: host_name.stdout
+  - name: gather ip details
+    shell: "hostname -I | awk '{print $1}' | tr -d '\n'"
+    register: ip_details
+  - debug:
+      var: ip_details.stdout
+  - name: collect the df  details
+    shell: "df -h | grep -v 'tmpfs'"
+    register: df_details
+  - debug:
+      var: df_details.stdout_lines    

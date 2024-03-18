@@ -1,0 +1,9 @@
+---
+- name: install the pkg httpd
+  hosts: rhel
+  become: yes  
+  tasks: 
+  - name: install the httpd
+    yum:
+      name: httpd
+      state: absent  

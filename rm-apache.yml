@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  tasks:  
+  - name: remove httpd pkg in rhel
+    yum:
+      name: httpd
+      state: present
+    when: ansible_os_family == "RedHat"
+    register: httpd_remove
+  - debug:
+      var: httpd_remove 
+  - name: remove apache pkg in ubuntu
+    apt:
+      name: Apache2
+      state: absent
+    when: ansible_os_family == "Debian"
+    register: apache2_remove
+  - debug: 
+      var: apache2_remove    
+
+

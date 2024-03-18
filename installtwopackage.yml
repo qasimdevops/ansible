@@ -1,0 +1,7 @@
+---
+- hosts: rhel
+  gather_facts: no
+  tasks:
+  - shell: "sudo yum install httpd -y"
+  - shell: "sudo yum install vim -y"  
+   

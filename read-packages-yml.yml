@@ -1,0 +1,14 @@
+---
+- name: read the yaml file
+  hosts: rhel
+  gather_facts: no
+  become: yes  
+  tasks:
+  - name: read the require yaml file
+    include_vars:
+      file: packages.yml
+  - name: install the pkg from yml file
+    yum:
+      name: "{{packages.package_wget.name}}"
+      state: "{{packages.package_wget.state}}"    
+

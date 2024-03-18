@@ -1,0 +1,38 @@
+---
+- hosts: all
+  gather_facts: yes
+  tasks:
+  - name: removing the old python files
+    file: 
+      path: /home/ansible/get-filter-information.py
+      state: absent
+  - name: removing the old json file
+    file:
+      path: /home/ansible/update_file.json
+      state: absent 
+  - name: removing the old csv files
+    file: 
+      path: /home/ansible/daily_reports.csv
+      state: absent
+  
+  - name: copy the python file from master to node
+    copy:
+      src: /home/ansible/ansible/get-filter-information.py
+      dest: /home/ansible
+      mode: 0755
+      owner: ansible
+      group: ansible
+  - name: copy the json file from master to node
+    copy:
+      src: /home/ansible/ansible/update_file.json   
+      dest: /home/ansible
+      owner: ansible
+      group: ansible
+  - name: executing the python script into nodes machine
+    command: /home/ansible/get-filter-information.py
+  - name: fetching the nodes csv reports into master machine
+    fetch:
+      src: /home/ansible/daily_reports.csv
+      dest: /home/ansible/ansible/csv/daily_reports{{inventory_hostname}}_{{ansible_date_time.minute}}.csv
+      flat: yes    
+        
